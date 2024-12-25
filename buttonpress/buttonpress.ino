@@ -10,8 +10,8 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
 
-  pinMode(buttonPin1, INPUT_PULLDOWN);
-  pinMode(buttonPin2, INPUT_PULLDOWN);
+  pinMode(buttonPin1, INPUT_PULLUP);
+  pinMode(buttonPin2, INPUT_PULLUP);
 
   Serial.println("Button detection initialized.");
   
@@ -24,11 +24,14 @@ void loop() {
   buttonState2 = digitalRead(buttonPin2);
 
     // Check if button at D15 is pressed
-
+ if (buttonState2 == LOW) {
+    Serial.println("Button Pressed1");
+    delay(2000);  // Debounce delay
+  }
 
   // Check if button at D2 is pressed
-  if (buttonState2 == HIGH || buttonState1 == HIGH) {
-    Serial.println("Button Pressed");
+  if (buttonState1 == LOW) {
+    Serial.println("Button Pressed2");
     delay(2000);  // Debounce delay
   }
 
